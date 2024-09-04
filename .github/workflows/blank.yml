@@ -2,6 +2,6 @@ name: Hello World
 on: [push]
 jobs:
   Hello-World-Job:
-    runs-on: codebuild-UploadtoS3_GithubRunner-${{ github.run_id }}-${{ github.run_attempt }} 
+    runs-on: codebuild-UploadtoS3_GithubRunner-${{ github.run_id }}-${{ github.run_attempt }} -with-buildspec 
     steps:
       - run: echo "Running action workflow from github"
