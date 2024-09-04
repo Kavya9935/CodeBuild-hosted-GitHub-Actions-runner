@@ -1,0 +1,7 @@
+name: Hello World
+on: [push]
+jobs:
+  Hello-World-Job:
+    runs-on: codebuild-Github_Selfhosted_RUNNER-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - run: echo "Hello World! 2"
