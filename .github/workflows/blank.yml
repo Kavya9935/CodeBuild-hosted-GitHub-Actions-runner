@@ -1,7 +1,37 @@
-name: Hello World
-on: [push]
-jobs:
-  Hello-World-Job:
-    runs-on: codebuild-UploadtoS3_GithubRunner-${{ github.run_id }}-${{ github.run_attempt }} -with-buildspec 
-    steps:
-      - run: echo "Running action workflow from github"
+name: CodeGuru Security Example 
+on: [push] 
+
+jobs: 
+      build: 
+            runs-on: ubuntu-latest 
+            steps: 
+            - name: Checkout Repository 
+              uses: actions/checkout@v3 
+              with: 
+                    fetch-depth: 0
+
+            - name: Configure aws credentials
+              uses: aws-actions/configure-aws-credentials@v2
+              if: ${{ always() }} # This ensures that your workflow runs successfully
+              with:
+                aws-region: us-east-1
+                aws-access-key-id: AKIAYS2NUKMWBQ2SKVWI
+                aws-secret-access-key: YW7qRZ0fiUPXRTBQk1hIkxu/v4R+4XhQxiFgztWS
+            
+            - name: CodeGuru Security
+              uses: aws-actions/codeguru-security@v1
+              with:
+                source_path: .
+                aws_region: us-east-1
+                fail_on_severity: Critical
+            
+            - name: Print findings
+              run: |
+                ls -l
+                cat codeguru-security-results.sarif.json
+
+            - name: Upload result
+              uses: github/codeql-action/upload-sarif@v3
+              with:
+                sarif_file: codeguru-security-results.sarif.json
+
