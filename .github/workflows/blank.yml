@@ -8,7 +8,9 @@ permissions:
   id-token: write
   # for writing security events.
   security-events: write
-
+  # only required for workflows in private repositories
+  actions: read
+  contents: read
 
 jobs:
   build:
@@ -22,9 +24,9 @@ jobs:
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
+          role-to-assume: arn:aws:iam::654654319122:role/CodeGuruSecurityGitHubAccessRole
           aws-region: us-east-1
-          aws-access-key-id: AKIAYS2NUKMWBQ2SKVWI
-          aws-secret-access-key: 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
+          role-session-name: GitHubActionScript
 
       - name: CodeGuru Security
         uses: aws-actions/codeguru-security@v1
