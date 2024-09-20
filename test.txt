@@ -1,3 +1,3 @@
 CodeBuild-hosted GitHub Actions runner to upload files to s3
 Trigger codebuild and print "Hello World! 2" because i removed -with-buildspec.
-new codebuild project.
+new codebuild project
