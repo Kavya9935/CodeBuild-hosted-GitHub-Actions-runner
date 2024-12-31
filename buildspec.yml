@@ -3,7 +3,8 @@ version: 0.2
 phases:
   build:
     commands:
-       - echo "i am running buildspec.yml"
+       - echo "i am running docker inside docker"
+       - docker run --name test -d nginx:alpine
 artifacts:
   files:
     - test.txt
