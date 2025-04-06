@@ -3,7 +3,7 @@ on: [push]
 jobs:
   Hello-World-Job:
     runs-on:
-      - codebuild-myProject-${{ github.run_id }}-${{ github.run_attempt }}
+      - codebuild-GithubWorkflow-Project-${{ github.run_id }}-${{ github.run_attempt }}
       - image:${{ matrix.os }}
       - instance-size:${{ matrix.size }}
       
