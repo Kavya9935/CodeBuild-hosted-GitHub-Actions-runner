@@ -6,7 +6,7 @@ jobs:
       - codebuild-myProject-${{ github.run_id }}-${{ github.run_attempt }}
       - image:${{ matrix.os }}
       - instance-size:${{ matrix.size }}
-      - fleet:myFleet
+      
       - buildspec-override:true
     strategy:
       matrix:
